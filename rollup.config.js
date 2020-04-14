@@ -4,7 +4,7 @@ export default {
 	input: 'src/index.ts',
 	output: {
 		file: 'dist/controllerkit.js',
-		format: 'cjs'
+		format: 'es'
 	},
 	plugins: [
 		TypeScript()
