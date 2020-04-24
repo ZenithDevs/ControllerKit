@@ -1,10 +1,13 @@
-<div style="text-align: center;">
-	<img src="docs/logo.png" alt="ControllerKit" style="width: 64px; height: 64px;">
-	<p style="font-size: 32px; font-weight: 600; margin-bottom: 0px;">ControllerKit</p>
-	<p style="font-size: 18px;">Responsive controller framework for the web.</p>
-	<a href="https://zenithdevs.github.io/ControllerKit/demo/" class="button">See it in Action</a>
-    <hr>
-</div>
+<p align="center">
+	<img src="docs/logo.png" alt="ControllerKit" width="64">
+	<br>
+	<h3 align="center" style="font-size: 32px; font-weight: 600; margin-bottom: 0px;">ControllerKit</h3>
+	<p align="center" style="font-size: 18px;">Responsive controller framework for the web.</p>
+	<p align="center">
+	<a href="https://zenithdevs.github.io/ControllerKit/demo/">See it in Action</a>
+	</p>
+	<hr>
+</p>
         
 ### What is ControllerKit?
 <p>ControllerKit is a JavaScript library that makes adding controls to your website trivial. ControllerKit supports keyboard, touch, and gamepad inputs right off the bat, so all you have to do is bind and handle the controls.</p>
