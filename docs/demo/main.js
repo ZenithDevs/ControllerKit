@@ -1,15 +1,14 @@
 var controls = new ControllerKit();
 
-document.querySelector('#output').innerHTML = "";
 document.querySelector('#gamepads').innerHTML = 'getGamepads' in navigator ? navigator.getGamepads().length : '0';
 document.querySelector('#gamepad-events').innerHTML = 'GamepadEvent' in window ? 'true' : 'false';
 
-controls.on('change', (state) => {
-	document.querySelector('#output').innerHTML = Object.keys(state)
+controls.on('change', ({source, state}) => {
+	document.querySelector('#output').innerHTML = `${Object.getPrototypeOf(source).constructor.name}<br>${Object.keys(state)
 	.filter(key => state[key])
 	.map(key => {
 		return `${key}: ${state[key]}`
-	}).join('<br>')
+	}).join('<br>')}`
 	console.log(state);
 });
 

@@ -38,7 +38,10 @@ export default class ControllerKit {
 				this.sources[i].onChange = (state) => {
 					this.eventHandlers.forEach(handler => {
 						if (handler.event == 'change') {
-							handler.handler(state);
+							handler.handler({
+								source: this.sources[i],
+								state
+							});
 						}
 					})
 				}
@@ -89,10 +92,22 @@ export default class ControllerKit {
 	/**
 	 * Listen to events
 	 * @param event The event name
-	 * @param handler The event
+	 * @param handler The event handler
 	 */
 	public on(event: string, handler: CKEventHandler) {
 		this.eventHandlers.push({ event, handler });
+	}
+
+	/**
+	 * Remove an event listener
+	 * @param event The event name
+	 * @param handler The event handler
+	 */
+	public off(event: string, handler: CKEventHandler) {
+		let index = this.eventHandlers.indexOf({ event, handler});
+		if (index > -1) {
+			this.eventHandlers.splice(index, 1);
+		}
 	}
 
 	/**
@@ -103,7 +118,10 @@ export default class ControllerKit {
 			this.sources[i].onChange = (state) => {
 				this.eventHandlers.forEach(handler => {
 					if (handler.event == 'change') {
-						handler.handler(state);
+						handler.handler({
+							source: this.sources[i],
+							state
+						});
 					}
 				})
 			}

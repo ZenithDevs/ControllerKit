@@ -6,6 +6,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
 	<title>ControllerKit Demo</title>
 	<style>
+		:root {
+			--safe-area-top: max(env(safe-area-inset-top), 16px);
+			--safe-area-bottom: max(env(safe-area-inset-bottom), 16px);
+			--safe-area-left: max(env(safe-area-inset-left), 16px);
+			--safe-area-right: max(env(safe-area-inset-right), 16px);
+		}
 		body {
 			background-color: #000;
 			overflow: hidden;
@@ -23,7 +29,7 @@
 
 		.output {
 			font-family: monospace;
-			margin: 16px 16px;
+			margin: var(--safe-area-top) var(--safe-area-left);
 		}
 
 		div.controls {
@@ -32,7 +38,7 @@
 			bottom: 0px;
 			left: 0px;
 			right: 0px;
-			padding: 0px 16px;
+			padding: 0px var(--safe-area-left);
 			opacity: 0.8;
 			/* padding-top: 0px; */
 			overflow: hidden;
@@ -176,7 +182,7 @@
 
 		div.startselect {
 			justify-content: center;
-			margin-bottom: 16px;
+			margin-bottom: var(--safe-area-bottom);
 		}
 
 		@media (orientation: landscape) {
@@ -233,11 +239,9 @@
 </head>
 <body>
 	<div class="output">
-		<p>Touch: <span class="touch-only">true</span><span class="not-touch">false</span></p>
-		<p># of Gamepads: <span id="gamepads">0</span></p>
-		<p>Gamepad Events: <span id="gamepad-events">false</span></p>
+		<p>Touch: <span class="touch-only">true</span><span class="not-touch">false</span>; Gamepads: <span id="gamepads">0</span>; Gamepad Events: <span id="gamepad-events">false</span>;</p>
 		<br>
-		<span id="output"></span>
+		<span id="output">Awaiting Input...</span>
 	</div>
 	<div class="controls" data-ck-control-region>
 		<div class="shoulder">
@@ -274,7 +278,13 @@
 	</div>
 	<script src="controllerkit.js"></script>
 	<script src="main.js"></script>
+	<!-- <script src="demo/controllerkit.js"></script>
+	<script src="demo/main.js"></script> -->
 	<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-	<script>eruda.init();</script>
+	<script>
+		if ((new URL(location.href)).searchParams.get('eruda') != null) {
+			eruda.init();
+		}
+	</script>
 </body>
 </html>

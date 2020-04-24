@@ -393,7 +393,10 @@ var ControllerKit = /** @class */ (function () {
                 _this.sources[i].onChange = function (state) {
                     _this.eventHandlers.forEach(function (handler) {
                         if (handler.event == 'change') {
-                            handler.handler(state);
+                            handler.handler({
+                                source: _this.sources[i],
+                                state: state
+                            });
                         }
                     });
                 };
@@ -439,26 +442,44 @@ var ControllerKit = /** @class */ (function () {
     /**
      * Listen to events
      * @param event The event name
-     * @param handler The event
+     * @param handler The event handler
      */
     ControllerKit.prototype.on = function (event, handler) {
         this.eventHandlers.push({ event: event, handler: handler });
+    };
+    /**
+     * Remove an event listener
+     * @param event The event name
+     * @param handler The event handler
+     */
+    ControllerKit.prototype.off = function (event, handler) {
+        var index = this.eventHandlers.indexOf({ event: event, handler: handler });
+        if (index > -1) {
+            this.eventHandlers.splice(index, 1);
+        }
     };
     /**
      * Start listening for inputs.
      */
     ControllerKit.prototype.listen = function () {
         var _this = this;
-        for (var i in this.sources) {
-            this.sources[i].onChange = function (state) {
+        var _loop_1 = function (i) {
+            this_1.sources[i].onChange = function (state) {
                 _this.eventHandlers.forEach(function (handler) {
                     if (handler.event == 'change') {
-                        handler.handler(state);
+                        handler.handler({
+                            source: _this.sources[i],
+                            state: state
+                        });
                     }
                 });
             };
-            this.sources[i].bindings = this.bindings;
-            this.sources[i].listen();
+            this_1.sources[i].bindings = this_1.bindings;
+            this_1.sources[i].listen();
+        };
+        var this_1 = this;
+        for (var i in this.sources) {
+            _loop_1(i);
         }
         this.listening = true;
     };
