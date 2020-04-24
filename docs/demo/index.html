@@ -2,10 +2,279 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 	<title>ControllerKit Demo</title>
+	<style>
+		body {
+			background-color: #000;
+			overflow: hidden;
+			margin: 0px;
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			right: 0px;
+			bottom: 0px;
+			color: #fff;
+			font-size: 14px;
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+			-webkit-user-select: none;
+		}
+
+		.output {
+			font-family: monospace;
+			margin: 16px 16px;
+		}
+
+		div.controls {
+			background-color: #642ec7;
+			position: fixed;
+			bottom: 0px;
+			left: 0px;
+			right: 0px;
+			padding: 0px 16px;
+			opacity: 0.8;
+			/* padding-top: 0px; */
+			overflow: hidden;
+			display: none;
+			flex-direction: column;
+			justify-content: space-between;
+			/* padding-right: 16px; */
+		}
+
+		div[data-ck-control], div.dpad .center {
+			width: 50px;
+			height: 50px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 25px;
+			background-color: #fff;
+			color: #929292;
+			overflow: hidden;
+			text-transform: uppercase;
+			font-size: 14px;
+			font-weight: 500;
+			pointer-events: none;
+		}
+
+		div[data-ck-control="l_shoulder"], div[data-ck-control="r_shoulder"] {
+			width: 100px;
+			height: 35px;
+		}
+
+		div[data-ck-control="l_shoulder"] {
+			border-radius: 0 0 15px 0;
+		} 
+		
+		div[data-ck-control="r_shoulder"] {
+			border-radius: 0 0 0 15px;
+		}
+
+		div[data-ck-control="start"], div[data-ck-control="select"] {
+			width: 75px;
+			height: 30px;
+			margin-left: 8px;
+			margin-right: 8px;
+		} 
+
+		div.dpad, div.facebuttons {
+			width: 150px;
+			height: 150px;
+			display: grid;
+			grid-template-columns: repeat(3, 50px, 1fr);
+		}
+
+		/* D-pad/Facebutton Control Styles */
+		div[data-ck-control="down, left"], div[data-ck-control="b, y"] {
+			grid-column: 1;
+			grid-row: 3;
+		}
+
+		div[data-ck-control="left"], div[data-ck-control="y"] {
+			grid-column: 1;
+			grid-row: 2;
+		}
+
+		div[data-ck-control="up, left"], div[data-ck-control="x, y"] {
+			grid-column: 1;
+			grid-row: 1;
+		}
+
+		div[data-ck-control="up"], div[data-ck-control="x"] {
+			grid-column: 2;
+			grid-row: 1;
+		}
+
+		div[data-ck-control="up, right"], div[data-ck-control="x, a"] {
+			grid-column: 3;
+			grid-row: 1;
+		}
+
+		div[data-ck-control="right"], div[data-ck-control="a"] {
+			grid-column: 3;
+			grid-row: 2;
+		}
+
+		div[data-ck-control="down, right"], div[data-ck-control="a, b"] {
+			grid-column: 3;
+			grid-row: 3;
+		}
+
+		div[data-ck-control="down"], div[data-ck-control="b"] {
+			grid-column: 2;
+			grid-row: 3;
+		}
+
+		div[data-ck-control="down, left"], div[data-ck-control="b, y"],
+		div[data-ck-control="up, left"], div[data-ck-control="x, y"],
+		div[data-ck-control="up, right"], div[data-ck-control="x, a"],
+		div[data-ck-control="down, right"], div[data-ck-control="a, b"] {
+			opacity: 0;
+		}
+
+		div.dpad .center {
+			border-radius: 0px;
+			grid-column: 2;
+			grid-row: 2;
+		}
+
+		div[data-ck-control="up"] {
+			border-radius: 15px 15px 0px 0px;
+		}
+
+		div[data-ck-control="left"] {
+			border-radius: 15px 0px 0px 15px;
+		}
+
+		div[data-ck-control="right"] {
+			border-radius: 0px 15px 15px 0px;
+		}
+
+		div[data-ck-control="down"] {
+			border-radius: 0px 0px 15px 15px;
+		}
+
+		div.shoulder, div.startselect, div.controls .middle {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		div.controls .middle {
+			/* margin-right: 16px;
+			margin-left: 16px; */
+			margin-top: 24px;
+			margin-bottom: 24px;
+		}
+
+		div.shoulder {
+			margin-left: -16px;
+			margin-right: -16px;
+			width: 100vw;
+		}
+
+		div.startselect {
+			justify-content: center;
+			margin-bottom: 16px;
+		}
+
+		@media (orientation: landscape) {
+			div.controls {
+				top: 0;
+				background-color: rgba(0,0,0,0);
+				height: 100%;
+			}
+
+			div.controls .shoulder {
+				margin-top: auto;
+				margin-left: 0px;
+				margin-right: 0px;
+				width: 100%;
+			}
+
+			div[data-ck-control="l_shoulder"], div[data-ck-control="r_shoulder"] {
+				border-radius: 17.5px;
+			}
+
+			div[data-ck-control], div.dpad .center {
+				opacity: 0.5;
+			}
+
+			div[data-ck-control="down, left"], div[data-ck-control="b, y"],
+			div[data-ck-control="up, left"], div[data-ck-control="x, y"],
+			div[data-ck-control="up, right"], div[data-ck-control="x, a"],
+			div[data-ck-control="down, right"], div[data-ck-control="a, b"] {
+				opacity: 0;
+			}
+
+		}
+
+		.not-touch {
+			display: inline;
+		}
+
+		.touch-only {
+			display: none;
+		}
+
+		@media (hover: none) and (pointer: coarse) {
+			div.controls {
+				display: flex;
+			}
+			.touch-only {
+				display: inline;
+			}
+			.not-touch {
+				display: none;
+			}
+		}
+	</style>
 </head>
 <body>
-	
+	<div class="output">
+		<p>Touch: <span class="touch-only">true</span><span class="not-touch">false</span></p>
+		<p># of Gamepads: <span id="gamepads">0</span></p>
+		<p>Gamepad Events: <span id="gamepad-events">false</span></p>
+		<br>
+		<span id="output"></span>
+	</div>
+	<div class="controls" data-ck-control-region>
+		<div class="shoulder">
+			<div data-ck-control="l_shoulder">L</div>
+			<div data-ck-control="r_shoulder">R</div>
+		</div>
+		<div class="middle">
+			<div class="dpad">
+				<div data-ck-control="down, left"></div>
+				<div data-ck-control="left"></div>
+				<div data-ck-control="up, left"></div>
+				<div data-ck-control="up"></div>
+				<div data-ck-control="up, right"></div>
+				<div data-ck-control="right"></div>
+				<div data-ck-control="down, right"></div>
+				<div data-ck-control="down"></div>
+				<div class="center"></div>
+			</div>
+			<div class="facebuttons">
+				<div data-ck-control="b, y"></div>
+				<div data-ck-control="y">Y</div>
+				<div data-ck-control="x, y"></div>
+				<div data-ck-control="x">X</div>
+				<div data-ck-control="x, a"></div>
+				<div data-ck-control="a">A</div>
+				<div data-ck-control="a, b"></div>
+				<div data-ck-control="b">B</div>
+			</div>
+		</div>
+		<div class="startselect">
+			<div data-ck-control="start">Start</div>
+			<div data-ck-control="select">Select</div>
+		</div>
+	</div>
+	<script src="/demo/controllerkit.js"></script>
+	<script src="/demo/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+	<script>eruda.init();</script>
 </body>
 </html>

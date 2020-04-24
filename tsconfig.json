@@ -1,0 +1,12 @@
+{
+	"typeRoots" : [
+		"src/controllerkit.d.ts"
+	],
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}

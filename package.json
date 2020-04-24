@@ -2,11 +2,13 @@
 	"name": "controllerkit",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "dist/controllerkit.js",
+	"publishConfig": { "registry": "https://npm.pkg.github.com/" },
 	"scripts": {
+		"start": "rm -rf dist && mkdir dist && rollup -c -w",
 		"build": "rm -rf dist && mkdir dist && rollup -c"
 	},
-	"keywords": [],
+	"keywords": ["typescript", "javascript", "gamepad", "controller"],
 	"author": "Magnetar",
 	"license": "ISC",
 	"devDependencies": {

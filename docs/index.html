@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ControllerKit - Zenith</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/github.min.css">
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="">
+        <h1>ControllerKit</h1>
+        <p>Responsive controller framework for the web.</p>
+        <a href="/demo" class="button">See it in Action</a>
+    </header>
+    <hr>
+    <main>
+
+        <!-- About -->
+        
+        <h3 id="about">What is ControllerKit?</h3>
+        <p>ControllerKit is a JavaScript library that makes adding controls to your website trivial. ControllerKit supports keyboard, touch, and gamepad inputs right off the bat, so all you have to do is bind and handle the controls.</p>
+        
+        <!-- Getting Started -->
+        
+        <h3 id="getting-started">Getting Started</h3>
+        <p>First things first, let's install it.</p>
+        <pre><code class="nohighlight"><span class="no-select">$</span>npm i @zenithdevs/controllerkit</code></pre>
+        <p>Once installed, just import it and make a new instance of the ControllerKit class. The only argument the ControllerKit class takes is options, which is optional. See <a href="#api">API</a> to learn more.</p>
+        <pre><code class="language-js">import ControllerKit from '@zenithdevs/controllerkit';<br>const controls = new ControllerKit();</code></pre>
+        <p>Now we can listen for inputs by binding the on "change" event handler and running the listen method.</p>
+        <pre><code class="language-js">controls.on('change', (controls) => console.log(controls));<br>controls.listen();</code></pre>
+        
+        <!-- API -->
+
+        <h3 id="getting-started">API</h3>
+        <p>ControllerKit was made to be simple and requires little to no configuration. The four lines in the <a href="#getting-started">Getting Started</a> section may be all you need, but for those who want more customization there's more options here.</p>
+        <p>For starters, the options object in the ControllerKit constructor. Below is an example that has all the options passed, along with their default values.</p>
+        <pre><code class="language-js">new ControllerKit({
+    touch: true, // Enable touch input
+    keyboard: true, // Enable keyboard input
+    gamepad: true, // Enable gamepad input
+    bindings // The bindings object, covered in the "Binding" section
+})</code></pre>
+
+    </main>
+    <footer></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(event) {
+            var elements = document.getElementsByClassName('language-js');
+            for (var i = 0; i < elements.length; i++) {
+                hljs.highlightBlock(elements[i]);
+            }
+        });
+    </script>
+</body>
+</html>
