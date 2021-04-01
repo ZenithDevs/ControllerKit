@@ -44,6 +44,8 @@ new ControllerKit({
   touch: true, // Enable touch input
   keyboard: true, // Enable keyboard input
   gamepad: true, // Enable gamepad input
+  deadZone: 0.75, // The deadzone for controller joysticks
+  touchQuerySelector: "[data-ck-control]", // The query selector of touch button elements
   bindings, // The bindings object, covered in the "Binding" section
 });
 ```
