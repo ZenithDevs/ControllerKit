@@ -1,7 +1,8 @@
+declare type CKEventName = "change" | "connected" | "disconnected";
 declare type CKEventHandler = (arg0: any) => void;
 
 declare type CKEventHandlers = {
-  event: string;
+  event: CKEventName;
   handler: CKEventHandler;
 }[];
 

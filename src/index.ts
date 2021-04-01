@@ -103,7 +103,7 @@ export default class ControllerKit {
    * @param event The event name
    * @param handler The event handler
    */
-  public on(event: string, handler: CKEventHandler) {
+  public on(event: CKEventName, handler: CKEventHandler) {
     this.eventHandlers.push({ event, handler });
   }
 
@@ -112,7 +112,7 @@ export default class ControllerKit {
    * @param event The event name
    * @param handler The event handler
    */
-  public off(event: string, handler: CKEventHandler) {
+  public off(event: CKEventName, handler: CKEventHandler) {
     let index = this.eventHandlers.indexOf({ event, handler });
     if (index > -1) {
       this.eventHandlers.splice(index, 1);

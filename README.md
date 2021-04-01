@@ -94,3 +94,11 @@ type CKControl =
   | "analog_r_right"
   | "analog_r_press";
 ```
+
+#### Event Listeners
+
+There are currently three event listener types:
+
+- "change", passes an object with the input source and it's current state to the event listener.
+- "connected", passes a GamepadEvent to the event listener.
+- "disconnected", passes a GamepadEvent to the event listener.
