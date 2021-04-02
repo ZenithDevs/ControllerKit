@@ -2,7 +2,7 @@ const defaults = {
     touch: "ontouchstart" in document.documentElement,
     keyboard: true,
     gamepad: "getGamepads" in navigator,
-    deadZone: 0.75,
+    deadZone: 0.5,
     touchQuerySelector: "[data-ck-control]",
     bindings: {
         // Misc.
@@ -72,19 +72,19 @@ const defaults = {
         // Left Analog Stick
         analog_l_up: {
             keyboard: 87,
-            gamepadJoystick: { axis: 1, direction: 1 },
+            gamepadJoystick: { axis: 1, direction: -1 },
         },
         analog_l_down: {
             keyboard: 83,
-            gamepadJoystick: { axis: 1, direction: -1 },
+            gamepadJoystick: { axis: 1, direction: 1 },
         },
         analog_l_left: {
             keyboard: 65,
-            gamepadJoystick: { axis: 0, direction: 1 },
+            gamepadJoystick: { axis: 0, direction: -1 },
         },
         analog_l_right: {
             keyboard: 68,
-            gamepadJoystick: { axis: 0, direction: -1 },
+            gamepadJoystick: { axis: 0, direction: 1 },
         },
         analog_l_press: {
             keyboard: 70,
@@ -93,19 +93,19 @@ const defaults = {
         // Right Analog Stick
         analog_r_up: {
             keyboard: 73,
-            gamepadJoystick: { axis: 2, direction: 1 },
+            gamepadJoystick: { axis: 3, direction: -1 },
         },
         analog_r_down: {
             keyboard: 75,
-            gamepadJoystick: { axis: 2, direction: -1 },
+            gamepadJoystick: { axis: 3, direction: 1 },
         },
         analog_r_left: {
             keyboard: 74,
-            gamepadJoystick: { axis: 3, direction: 1 },
+            gamepadJoystick: { axis: 2, direction: -1 },
         },
         analog_r_right: {
             keyboard: 76,
-            gamepadJoystick: { axis: 3, direction: -1 },
+            gamepadJoystick: { axis: 2, direction: 1 },
         },
         analog_r_press: {
             keyboard: 72,
