@@ -13,7 +13,7 @@
 <p>ControllerKit is a JavaScript library that makes adding controls to your website trivial. ControllerKit supports keyboard, touch, and gamepad inputs right off the bat, so all you have to do is bind and handle the controls.</p>
 		
 ### Getting Started
-First things first, let's install it.
+First things first, let's install it. It's only available on the GitHub Package registry, so you'll need to set that up before you can install.
 
 ```shell
 $ npm i @zenithdevs/controllerkit
@@ -59,7 +59,7 @@ type CKInputBindings = {
   [key in CKControl]: {
     keyboard?: number; // A keyCode to bind to.
     gamepadButton?: number; // The button on a controller to bind to.
-    gamepadJoystick?: { axis: number; direction: -1 | 1 }; // The axis to bind to as well as the direction (positve 1 or negative 1).
+    gamepadJoystick?: { axis: number; direction: -1 | 1 }; // The axis to bind to as well as the direction (positive 1 or negative 1).
   };
 };
 ```
