@@ -1,6 +1,6 @@
 {
-  "name": "controllerkit",
-  "version": "1.0.2",
+  "name": "@zenithdevs/controllerkit",
+  "version": "1.0.3",
   "description": "A simple JavaScript library to serve as a common API for touch, keyboard, and gamepad inputs.",
   "main": "dist/controllerkit.js",
   "publishConfig": {
